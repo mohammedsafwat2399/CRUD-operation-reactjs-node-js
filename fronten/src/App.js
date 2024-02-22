@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Form from "./component/Form";
 
-axios.defaults.baseURL ='http://localhost:8000/';
-
+ 
 
 function App() {
+  console.log(process.env.REACT_APP_SERVER_DOMIN)
   const [dataList, setDataList] = useState([]);
   const [showCreate, setShewCreate] = useState(false);
   const [showEdit, setShewEdit] = useState(false);
@@ -41,7 +41,7 @@ function App() {
   };
   // read data
   const handelGetDataList = async () => {
-    const dataRes = await axios.get("/");
+    const dataRes = await axios.get(`${process.env.REACT_APP_SERVER_DOMIN}/`);
     if (dataRes.data.success) {
       setDataList(dataRes.data.data);
     }
@@ -52,7 +52,7 @@ function App() {
   // create data
    const handelSubmit = async (e) => {
     e.preventDefault();
-     const resData = await axios.post(`/create`, createData);
+     const resData = await axios.post(`${process.env.REACT_APP_SERVER_DOMIN}/create`, createData);
     console.log(resData);
     if (resData.data.success) {
       alert(resData.data.message);
@@ -68,7 +68,7 @@ function App() {
   };
 // delete data
   const handelDelete = async (id) => {
-    const dataRes = await axios.delete(`/delete/${id}`);
+    const dataRes = await axios.delete( `${process.env.REACT_APP_SERVER_DOMIN}/delete/${id}` );
     if (dataRes.data.success) {
       handelGetDataList();
       alert(dataRes.data.message);
@@ -81,7 +81,7 @@ function App() {
   // updata data
   const handelSubmitEdit = async(e) => {
     e.preventDefault();
-    const resData = await axios.put(`/update`,editData);
+    const resData = await axios.put(`${process.env.REACT_APP_SERVER_DOMIN}/update`,editData);
     console.log(resData);
     if (resData.data.success) {
       handelGetDataList();
