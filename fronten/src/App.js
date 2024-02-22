@@ -41,7 +41,7 @@ function App() {
   };
   // read data
   const handelGetDataList = async () => {
-    const dataRes = await axios.get(`${process.env.REACT_APP_SERVER_DOMIN}/`);
+    const dataRes = await axios.get(`${process.env.REACT_APP_SERVER_DOMIN}`);
     if (dataRes.data.success) {
       setDataList(dataRes.data.data);
     }
