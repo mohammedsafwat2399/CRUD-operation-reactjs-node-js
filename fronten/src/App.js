@@ -153,7 +153,7 @@ function App() {
               );
             })
           ) : (
-            <p style={{ textAlign: "center" }}>...no dada </p>
+            <p style={{ textAlign: "center" }}>...please wait </p>
           )}
         </table>
       </div>
